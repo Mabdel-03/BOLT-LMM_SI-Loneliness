@@ -20,10 +20,8 @@
 ```bash
 cd /home/mabdel03/data/files/Isolation_Genetics/GWAS/Scripts/ukb21942/BOLT-LMM_SI-Loneliness
 
-# Run filtering (bash not sbatch - matches working repo)
-bash filter_to_EUR_MM.sh
-bash filter_to_EUR_Male.sh
-bash filter_to_EUR_Female.sh
+# Run filtering - Python script is more robust (matches working repo)
+python3 filter_populations.py   # ⭐ Recommended
 
 # Verify 6 files created
 ls -lh *.EUR*.tsv.gz | wc -l  # Should show: 6
@@ -119,7 +117,7 @@ zcat results/Day_NoPCs/EUR_MM/bolt_Loneliness.Day_NoPCs.log.gz | grep "h2:"
 
 ---
 
-**Ready?** Run Step 1: `bash filter_to_EUR_MM.sh` (then EUR_Male, then EUR_Female)
+**Ready?** Run Step 1: `python3 filter_populations.py`
 
 *Last Updated: October 30, 2025*
 
