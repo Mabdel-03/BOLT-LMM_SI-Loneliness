@@ -35,13 +35,13 @@ cd ${SRCDIR}
 
 # Define phenotypes and population stratifications
 phenotypes=(Loneliness FreqSoc AbilityToConfide)  # 3 binary social isolation phenotypes
-keep_sets=(EUR_MM EUR_Male_MM EUR_Female_MM)  # 3 population stratifications
+keep_sets=(EUR_MM EUR_Male EUR_Female)  # 3 population stratifications
 covar_str="Day_NoPCs"  # Single covariate set
 
 # Map array task ID to phenotype and population combination
-# Task 1-3: Loneliness with EUR_MM, EUR_Male_MM, EUR_Female_MM
-# Task 4-6: FreqSoc with EUR_MM, EUR_Male_MM, EUR_Female_MM
-# Task 7-9: AbilityToConfide with EUR_MM, EUR_Male_MM, EUR_Female_MM
+# Task 1-3: Loneliness with EUR_MM, EUR_Male, EUR_Female
+# Task 4-6: FreqSoc with EUR_MM, EUR_Male, EUR_Female
+# Task 7-9: AbilityToConfide with EUR_MM, EUR_Male, EUR_Female
 
 n_keeps=${#keep_sets[@]}
 pheno_idx=$(( (SLURM_ARRAY_TASK_ID - 1) / n_keeps ))

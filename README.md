@@ -23,8 +23,8 @@ This analysis performs genome-wide association studies (GWAS) for social isolati
 | Population | Description | Expected N |
 |------------|-------------|------------|
 | **EUR_MM** | European ancestry (includes related individuals) | ~426,000 |
-| **EUR_Male_MM** | European ancestry males only | ~200,000 |
-| **EUR_Female_MM** | European ancestry females only | ~226,000 |
+| **EUR_Male** | European ancestry males only | ~200,000 |
+| **EUR_Female** | European ancestry females only | ~226,000 |
 
 ### Covariate Model
 
@@ -53,9 +53,9 @@ This analysis performs genome-wide association studies (GWAS) for social isolati
 
 | Task | Phenotype | Population |
 |------|-----------|------------|
-| 1-3 | Loneliness | EUR_MM, EUR_Male_MM, EUR_Female_MM |
-| 4-6 | FreqSoc | EUR_MM, EUR_Male_MM, EUR_Female_MM |
-| 7-9 | AbilityToConfide | EUR_MM, EUR_Male_MM, EUR_Female_MM |
+| 1-3 | Loneliness | EUR_MM, EUR_Male, EUR_Female |
+| 4-6 | FreqSoc | EUR_MM, EUR_Male, EUR_Female |
+| 7-9 | AbilityToConfide | EUR_MM, EUR_Male, EUR_Female |
 
 ---
 
@@ -84,11 +84,11 @@ tail -f 0a_filter.out
 
 # This creates:
 # - isolation_run_control.EUR_MM.tsv.gz
-# - isolation_run_control.EUR_Male_MM.tsv.gz
-# - isolation_run_control.EUR_Female_MM.tsv.gz
+# - isolation_run_control.EUR_Male.tsv.gz
+# - isolation_run_control.EUR_Female.tsv.gz
 # - sqc.EUR_MM.tsv.gz
-# - sqc.EUR_Male_MM.tsv.gz
-# - sqc.EUR_Female_MM.tsv.gz
+# - sqc.EUR_Male.tsv.gz
+# - sqc.EUR_Female.tsv.gz
 ```
 
 ### Step 2: Test Run
@@ -132,16 +132,16 @@ BOLT-LMM_SI-Loneliness/
 │       │   ├── bolt_FreqSoc.Day_NoPCs.log.gz
 │       │   ├── bolt_AbilityToConfide.Day_NoPCs.stats.gz
 │       │   └── bolt_AbilityToConfide.Day_NoPCs.log.gz
-│       ├── EUR_Male_MM/
+│       ├── EUR_Male/
 │       │   └── [same 6 files]
-│       └── EUR_Female_MM/
+│       └── EUR_Female/
 │           └── [same 6 files]
 ├── isolation_run_control.EUR_MM.tsv.gz
-├── isolation_run_control.EUR_Male_MM.tsv.gz
-├── isolation_run_control.EUR_Female_MM.tsv.gz
+├── isolation_run_control.EUR_Male.tsv.gz
+├── isolation_run_control.EUR_Female.tsv.gz
 ├── sqc.EUR_MM.tsv.gz
-├── sqc.EUR_Male_MM.tsv.gz
-└── sqc.EUR_Female_MM.tsv.gz
+├── sqc.EUR_Male.tsv.gz
+└── sqc.EUR_Female.tsv.gz
 ```
 
 ---
@@ -300,7 +300,7 @@ Estimate heritability and genetic correlations:
 
 ```bash
 # Heritability for each phenotype-population
-for pop in EUR_MM EUR_Male_MM EUR_Female_MM; do
+for pop in EUR_MM EUR_Male EUR_Female; do
     for pheno in Loneliness FreqSoc AbilityToConfide; do
         ldsc.py \
             --h2 results/Day_NoPCs/${pop}/bolt_${pheno}.Day_NoPCs.stats.gz \
@@ -312,7 +312,7 @@ done
 
 # Genetic correlation between males and females
 ldsc.py \
-    --rg results/Day_NoPCs/EUR_Male_MM/bolt_Loneliness.Day_NoPCs.stats.gz,results/Day_NoPCs/EUR_Female_MM/bolt_Loneliness.Day_NoPCs.stats.gz \
+    --rg results/Day_NoPCs/EUR_Male/bolt_Loneliness.Day_NoPCs.stats.gz,results/Day_NoPCs/EUR_Female/bolt_Loneliness.Day_NoPCs.stats.gz \
     --ref-ld-chr eur_w_ld_chr/ \
     --w-ld-chr eur_w_ld_chr/ \
     --out Loneliness_Male_vs_Female.rg

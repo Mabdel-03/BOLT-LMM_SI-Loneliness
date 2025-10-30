@@ -7,7 +7,7 @@
 ## What This Analysis Does
 
 - **3 social isolation phenotypes**: Loneliness, FreqSoc (frequency of social contact), AbilityToConfide
-- **3 population stratifications**: EUR_MM, EUR_Male_MM, EUR_Female_MM
+- **3 population stratifications**: EUR_MM, EUR_Male, EUR_Female
 - **1 covariate model**: Day_NoPCs (age, sex, array)
 - **Total**: 9 GWAS analyses
 
@@ -49,9 +49,9 @@ squeue -u mabdel03  # Monitor all jobs
 ## Job Mapping
 
 ```
-Task 1-3: Loneliness        × [EUR_MM, EUR_Male_MM, EUR_Female_MM]
-Task 4-6: FreqSoc           × [EUR_MM, EUR_Male_MM, EUR_Female_MM]
-Task 7-9: AbilityToConfide  × [EUR_MM, EUR_Male_MM, EUR_Female_MM]
+Task 1-3: Loneliness        × [EUR_MM, EUR_Male, EUR_Female]
+Task 4-6: FreqSoc           × [EUR_MM, EUR_Male, EUR_Female]
+Task 7-9: AbilityToConfide  × [EUR_MM, EUR_Male, EUR_Female]
 ```
 
 ---
@@ -67,10 +67,10 @@ results/Day_NoPCs/
 │   ├── bolt_FreqSoc.Day_NoPCs.log.gz
 │   ├── bolt_AbilityToConfide.Day_NoPCs.stats.gz
 │   └── bolt_AbilityToConfide.Day_NoPCs.log.gz
-├── EUR_Male_MM/
-│   └── [same 6 files]
-└── EUR_Female_MM/
-    └── [same 6 files]
+    ├── EUR_Male/
+    │   └── [same 6 files]
+    └── EUR_Female/
+        └── [same 6 files]
 ```
 
 **Total**: 18 files (9 stats.gz + 9 log.gz)
